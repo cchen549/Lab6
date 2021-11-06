@@ -41,6 +41,7 @@ public class MainActivity extends FragmentActivity {
                 .position(mDestinationLatLng)
                 .title("Destination"));
             displayMyLocation();
+
             mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(mDestinationLatLng, 10));
         });
     }
@@ -59,6 +60,7 @@ public class MainActivity extends FragmentActivity {
                 Location mLastKnownLocation = task.getResult();
                 if(task.isSuccessful() && mLastKnownLocation != null){
                     mMap.addPolyline(new PolylineOptions().add(new LatLng(mLastKnownLocation.getLatitude(),mLastKnownLocation.getLongitude()),mDestinationLatLng));
+                    mMap.addMarker(new MarkerOptions().position(new LatLng(mLastKnownLocation.getLatitude(),mLastKnownLocation.getLongitude())).title("Current"));
                 }
             });
         }
